@@ -1,57 +1,71 @@
-//Immediate Invoked Anonymous Function
+// Immediate Invoked Anonymous Function
 (function () {
+    // Global Game Variables
     var canvas = document.getElementById("canvas");
     var stage;
-    var helloLabel;
-    var upDirection;
-    var rightDirection;
+    var assetManager;
+    var assetManifest;
+    // Store current scene and state information
+    var currentScene;
+    var currentState;
+    assetManifest = [
+        { id: "backButton", src: "./Assets/BackButton.png" },
+        { id: "nextButton", src: "./Assets/NextButton.png" }
+    ];
     function Init() {
         console.log("Initialization Start");
-        Start();
+        // Start();
+        assetManager = new createjs.LoadQueue();
+        assetManager.installPlugin(createjs.Sound);
+        assetManager.loadManifest(assetManifest);
+        assetManager.on("complete", Start, this);
     }
     function Start() {
-        console.log("Starting application...");
-        //initialize createjs
+        console.log("Starting Application...");
+        // Initialize CreateJS
         stage = new createjs.Stage(canvas);
-        createjs.Ticker.framerate = 60; //60fps
+        // Freqeuncy of checks. Computationally expensive. Turn on in menus, Turn off in game
+        stage.enableMouseOver(20);
+        createjs.Ticker.framerate = 60; // 60 FPS
         createjs.Ticker.on("tick", Update);
-        upDirection = true;
-        rightDirection = true;
+        // Set up default game state
+        objects.Game.currentScene = config.Scene.START;
+        currentState = config.Scene.START;
         Main();
     }
     function Update() {
+        // Has my state changed since the last check?
+        if (currentState != objects.Game.currentScene) {
+            console.log("Changing scenes to" + objects.Game.currentScene);
+            Main();
+        }
+        currentScene.Update();
         stage.update();
-        if (rightDirection) {
-            helloLabel.x += 1;
-        }
-        else {
-            helloLabel.x -= 1;
-        }
-        if (upDirection) {
-            helloLabel.y += 1;
-        }
-        else {
-            helloLabel.y -= 1;
-        }
-        if (helloLabel.x > 600 && rightDirection) {
-            rightDirection = false;
-        }
-        else if (helloLabel.x < 0 && !rightDirection) {
-            rightDirection = true;
-        }
-        if (helloLabel.y > 440 && upDirection) {
-            upDirection = false;
-        }
-        else if (helloLabel.y < 0 && !upDirection) {
-            upDirection = true;
-        }
+    }
+    function clickableButtonMouseClick() {
+        console.log("AHHHHHHH");
     }
     function Main() {
-        console.log("Game Start!");
-        helloLabel = new createjs.Text("Hello World!", "40px Consolas", "#000000");
-        helloLabel.x = 100;
-        helloLabel.y = 100;
-        stage.addChild(helloLabel);
+        console.log("Game Start...");
+        // Finite State Machine
+        switch (objects.Game.currentScene) {
+            case config.Scene.START:
+                stage.removeAllChildren();
+                currentScene = new scenes.StartScene(assetManager);
+                stage.addChild(currentScene);
+                break;
+            case config.Scene.GAME:
+                stage.removeAllChildren();
+                currentScene = new scenes.PlayScene(assetManager);
+                stage.addChild(currentScene);
+                break;
+            case config.Scene.OVER:
+                stage.removeAllChildren();
+                currentScene = new scenes.GameOverScene(assetManager);
+                stage.addChild(currentScene);
+                break;
+        }
+        currentState = objects.Game.currentScene;
     }
     window.onload = Init;
 })();
