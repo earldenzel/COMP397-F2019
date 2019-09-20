@@ -29,7 +29,6 @@ var scenes;
             this.Main();
         };
         StartScene.prototype.Update = function () {
-            this.background.Update();
         };
         StartScene.prototype.startButtonClick = function () {
             // Change our game state from START to GAME

@@ -21,7 +21,7 @@ var objects;
             return _this;
         }
         Background.prototype.Start = function () {
-            this.speedY = 5;
+            this.speedY = 0.5;
             this.Reset();
         };
         Background.prototype.Update = function () {

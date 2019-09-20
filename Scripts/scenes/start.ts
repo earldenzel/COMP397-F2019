@@ -22,7 +22,6 @@ module scenes {
             this.Main();
         }
         public Update():void {
-            this.background.Update();
         }
 
         private startButtonClick():void {
