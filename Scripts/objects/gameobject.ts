@@ -8,6 +8,7 @@ module objects{
         public height:number;
         public halfWidth:number; //useful for collision detection
         public halfHeight:number;
+        public isColliding:boolean;
 
         //C
         constructor(assetManager: createjs.LoadQueue, imageString:string){
@@ -30,6 +31,7 @@ module objects{
             //Registration Points
             this.regX = this.halfWidth;
             this.regY = this.halfHeight;
+            this.isColliding = false;
         }
 
         public Start(): void{}

@@ -23,39 +23,32 @@ var scenes;
         }
         // Methods
         PlayScene.prototype.Start = function () {
-            // Initialize our variables
-            /*
-            this.playLabel = new objects.Label(
-                "Game Playing", "40px", "Consolas", "#000000", 320, 240, true);
-            this.nextButton = new objects.Button(this.assetManager, "nextButton", 500, 340);
-            this.backButton = new objects.Button(this.assetManager, "backButton", 100, 340);
-            */
+            this.player = new objects.Player(this.assetManager);
             this.background = new objects.Background(this.assetManager);
+            //this.enemy = new objects.Enemy(this.assetManager);
+            this.enemies = new Array();
+            this.enemyNumber = 5;
+            for (var index = 0; index < this.enemyNumber; index++) {
+                this.enemies[index] = new objects.Enemy(this.assetManager);
+            }
             this.Main();
         };
         PlayScene.prototype.Update = function () {
+            var _this = this;
             this.background.Update();
+            this.player.Update();
+            this.enemies.forEach(function (e) {
+                e.Update();
+                managers.Collision.Check(_this.player, e);
+            });
         };
-        /*
-        private nextButtonClick(): void {
-            objects.Game.currentScene = config.Scene.OVER;
-        }
-
-        private backButtonClick(): void {
-            objects.Game.currentScene = config.Scene.START;
-        }
-        */
         PlayScene.prototype.Main = function () {
-            /*
-            this.addChild(this.playLabel);
-            this.addChild(this.nextButton);
-            this.addChild(this.backButton);
-
-            // Define event handlers for the buttons
-            this.nextButton.on("click", this.nextButtonClick);
-            this.backButton.on("click", this.backButtonClick);
-            */
+            var _this = this;
             this.addChild(this.background);
+            this.addChild(this.player);
+            this.enemies.forEach(function (e) {
+                _this.addChild(e);
+            });
         };
         return PlayScene;
     }(objects.Scene));

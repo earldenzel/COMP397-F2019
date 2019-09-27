@@ -22,6 +22,31 @@ var objects;
             _this.Start();
             return _this;
         }
+        //M
+        Player.prototype.Start = function () {
+            this.x = 320;
+            this.y = 700;
+        };
+        Player.prototype.Update = function () {
+            this.Move();
+            this.CheckBound();
+        };
+        Player.prototype.Reset = function () {
+        };
+        Player.prototype.Move = function () {
+            this.x = objects.Game.stage.mouseX;
+            this.y = objects.Game.stage.mouseY;
+        };
+        Player.prototype.CheckBound = function () {
+            //RIGHT
+            if (this.x >= (640 - this.halfWidth)) {
+                this.x = 640 - this.halfWidth;
+            }
+            //LEFT
+            if (this.x <= this.halfWidth) {
+                this.x = this.halfWidth;
+            }
+        };
         return Player;
     }(objects.GameObject));
     objects.Player = Player;

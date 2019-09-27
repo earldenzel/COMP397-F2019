@@ -9,5 +9,34 @@ module objects{
         }
 
         //M
+        public Start():void{
+            this.x = 320;
+            this.y = 700;
+        }
+
+        public Update(): void{
+            this.Move();
+            this.CheckBound();
+        }
+        public Reset(): void{
+
+        }
+        public Move():void{
+            this.x = objects.Game.stage.mouseX;
+            this.y = objects.Game.stage.mouseY;
+
+        }
+        public CheckBound():void{
+            //RIGHT
+            if (this.x >= (640 - this.halfWidth)){
+                this.x = 640-this.halfWidth
+            }
+
+            //LEFT
+            if (this.x <= this.halfWidth){
+                this.x = this.halfWidth
+            }
+
+        }
     }
 }
