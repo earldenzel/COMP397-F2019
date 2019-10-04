@@ -18,7 +18,11 @@
         {id: "nextButton", src:"./Assets/NextButton.png"},
         {id: "background", src:"./Assets/background.png"},
         {id: "player", src:"./Assets/spaceship.png"},
-        {id: "enemy", src: "./Assets/asteroid_1.png"}
+        {id: "enemy", src: "./Assets/asteroid_1.png"},
+        {id: "explosion", src: "./Assets/Sounds/explosion.ogg"},
+        {id: "play_music", src: "./Assets/Sounds/level_music.wav"},
+        {id: "start_music", src: "./Assets/Sounds/start_music.wav"}
+
     ];
 
     function Init() {
@@ -88,6 +92,7 @@
         }
 
         currentState = objects.Game.currentScene;
+        objects.Game.currentSceneObject = currentScene;
     }
 
     window.onload = Init;

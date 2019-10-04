@@ -31,6 +31,11 @@ var scenes;
             for (var index = 0; index < this.enemyNumber; index++) {
                 this.enemies[index] = new objects.Enemy(this.assetManager);
             }
+            this.scoreboard = new managers.Scoreboard;
+            createjs.Sound.stop();
+            this.backgroundMusic = createjs.Sound.play("play_music");
+            this.backgroundMusic.loop = -1; //loop forever
+            this.backgroundMusic.volume = 0.3;
             this.Main();
         };
         PlayScene.prototype.Update = function () {
@@ -39,7 +44,12 @@ var scenes;
             this.player.Update();
             this.enemies.forEach(function (e) {
                 e.Update();
-                managers.Collision.Check(_this.player, e);
+                _this.player.isDead = managers.Collision.Check(_this.player, e);
+                if (_this.player.isDead) {
+                    //Disable music
+                    _this.backgroundMusic.stop();
+                    objects.Game.currentScene = config.Scene.OVER;
+                }
             });
         };
         PlayScene.prototype.Main = function () {
@@ -49,6 +59,8 @@ var scenes;
             this.enemies.forEach(function (e) {
                 _this.addChild(e);
             });
+            this.addChild(this.scoreboard.highScoreLabel);
+            this.addChild(this.scoreboard.scoreLabel);
         };
         return PlayScene;
     }(objects.Scene));

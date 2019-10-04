@@ -1,6 +1,7 @@
 module objects{
     export class Player extends objects.GameObject{
         //V
+        public isDead: boolean;
 
         //C
         constructor(assetManager:createjs.LoadQueue){
@@ -12,6 +13,8 @@ module objects{
         public Start():void{
             this.x = 320;
             this.y = 700;
+
+            this.isDead = false;
         }
 
         public Update(): void{

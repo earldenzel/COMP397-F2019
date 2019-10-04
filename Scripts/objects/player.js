@@ -15,7 +15,6 @@ var objects;
 (function (objects) {
     var Player = /** @class */ (function (_super) {
         __extends(Player, _super);
-        //V
         //C
         function Player(assetManager) {
             var _this = _super.call(this, assetManager, "player") || this;
@@ -26,6 +25,7 @@ var objects;
         Player.prototype.Start = function () {
             this.x = 320;
             this.y = 700;
+            this.isDead = false;
         };
         Player.prototype.Update = function () {
             this.Move();
