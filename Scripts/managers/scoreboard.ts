@@ -1,5 +1,5 @@
 module managers{
-    export class Scoreboard{
+    export class Scoreboard extends createjs.Container{
         //Variables
         public scoreLabel: objects.Label;
         public highScoreLabel: objects.Label;
@@ -25,15 +25,23 @@ module managers{
         //Constructor
         constructor()
         {
+            super();
             this.Init();
         }
 
 
         private Init(): void{
-            this.scoreLabel = new objects.Label("Score: 999999", "20px", "Consolas", "#FFFF00", 10, 10, false);
-            this.highScoreLabel = new objects.Label("Hi-Score: 999999", "20px", "Consolas", "#FFFF00", 10, 40, false);
+            this.scoreLabel = new objects.Label("Score: 999999", "20px", "Consolas", "#FFFF00", 0, 0, false);
+            this.highScoreLabel = new objects.Label("Hi-Score: 999999", "20px", "Consolas", "#FFFF00", 420, 0, false);
             this.score = 0;
             this.highScore = 0;
+
+            this.Main();
+        }
+
+        private Main(): void{
+            this.addChild(this.scoreLabel);
+            this.addChild(this.highScoreLabel);
         }
         
 

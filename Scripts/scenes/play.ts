@@ -28,6 +28,8 @@ module scenes {
             }
 
             this.scoreboard = new managers.Scoreboard;
+            this.scoreboard.x = 10;
+            this.scoreboard.y = 10;
 
             createjs.Sound.stop();
             this.backgroundMusic = createjs.Sound.play("play_music");
@@ -57,8 +59,7 @@ module scenes {
             this.enemies.forEach(e =>{
                 this.addChild(e);
             });
-            this.addChild(this.scoreboard.highScoreLabel);
-            this.addChild(this.scoreboard.scoreLabel);
+            this.addChild(this.scoreboard);
         }
     }
 }

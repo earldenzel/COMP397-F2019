@@ -25,8 +25,22 @@ module objects{
 
         }
         public Move():void{
-            this.x = objects.Game.stage.mouseX;
-            this.y = objects.Game.stage.mouseY;
+            //this.x = objects.Game.stage.mouseX;
+            //this.y = objects.Game.stage.mouseY;
+            if (objects.Game.keyboardManager.enabled){
+                if (objects.Game.keyboardManager.moveLeft){
+                    this.x -= 5;
+                }
+                if (objects.Game.keyboardManager.moveRight){
+                    this.x += 5;
+                }
+                if (objects.Game.keyboardManager.moveUp){
+                    this.y -= 5;
+                }
+                if (objects.Game.keyboardManager.moveDown){
+                    this.y += 5;
+                }
+            }
 
         }
         public CheckBound():void{

@@ -32,6 +32,8 @@ var scenes;
                 this.enemies[index] = new objects.Enemy(this.assetManager);
             }
             this.scoreboard = new managers.Scoreboard;
+            this.scoreboard.x = 10;
+            this.scoreboard.y = 10;
             createjs.Sound.stop();
             this.backgroundMusic = createjs.Sound.play("play_music");
             this.backgroundMusic.loop = -1; //loop forever
@@ -59,8 +61,7 @@ var scenes;
             this.enemies.forEach(function (e) {
                 _this.addChild(e);
             });
-            this.addChild(this.scoreboard.highScoreLabel);
-            this.addChild(this.scoreboard.scoreLabel);
+            this.addChild(this.scoreboard);
         };
         return PlayScene;
     }(objects.Scene));
