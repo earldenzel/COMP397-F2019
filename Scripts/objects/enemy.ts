@@ -3,8 +3,8 @@ module objects{
         //V
 
         //C
-        constructor(assetManager:createjs.LoadQueue){
-            super(assetManager, "enemy");
+        constructor(){
+            super("enemy");
             this.Start();
         }
 

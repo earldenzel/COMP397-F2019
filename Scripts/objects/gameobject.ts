@@ -1,5 +1,5 @@
 module objects{
-    export abstract class GameObject extends createjs.Bitmap {
+    export abstract class GameObject extends createjs.Sprite {
         //V
         protected speedX:number;
         protected speedY:number;
@@ -11,8 +11,8 @@ module objects{
         public isColliding:boolean;
 
         //C
-        constructor(assetManager: createjs.LoadQueue, imageString:string){
-            super(assetManager.getResult(imageString));
+        constructor(imageString:string){
+            super(managers.Game.textureAtlas, imageString);
 
             this.name = imageString;
 

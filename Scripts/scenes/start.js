@@ -16,16 +16,16 @@ var scenes;
     var StartScene = /** @class */ (function (_super) {
         __extends(StartScene, _super);
         // Constructor
-        function StartScene(assetManager) {
-            var _this = _super.call(this, assetManager) || this;
+        function StartScene() {
+            var _this = _super.call(this) || this;
             _this.Start();
             return _this;
         }
         StartScene.prototype.Start = function () {
             // Initialize our objects for this scene
-            this.background = new objects.Background(this.assetManager);
+            this.background = new objects.Background();
             this.welcomeLabel = new objects.Label("Welcome to School!", "60px", "Consolas", "#FFFFFF", 320, 240, true);
-            this.startButton = new objects.Button(this.assetManager, "nextButton", 320, 300);
+            this.startButton = new objects.Button("nextButton", 320, 300);
             this.startMusic = createjs.Sound.play("start_music");
             this.startMusic.loop = -1; //loop forever
             this.startMusic.volume = 0.3;
@@ -35,7 +35,7 @@ var scenes;
         };
         StartScene.prototype.startButtonClick = function () {
             // Change our game state from START to GAME
-            objects.Game.currentScene = config.Scene.GAME;
+            managers.Game.currentScene = config.Scene.GAME;
         };
         StartScene.prototype.Main = function () {
             // Add items to our scene

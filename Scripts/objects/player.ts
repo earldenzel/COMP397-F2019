@@ -4,8 +4,8 @@ module objects{
         public isDead: boolean;
 
         //C
-        constructor(assetManager:createjs.LoadQueue){
-            super(assetManager, "player");
+        constructor(){
+            super("player");
             this.Start();
         }
 
@@ -27,17 +27,17 @@ module objects{
         public Move():void{
             //this.x = objects.Game.stage.mouseX;
             //this.y = objects.Game.stage.mouseY;
-            if (objects.Game.keyboardManager.enabled){
-                if (objects.Game.keyboardManager.moveLeft){
+            if (managers.Game.keyboardManager.enabled){
+                if (managers.Game.keyboardManager.moveLeft){
                     this.x -= 5;
                 }
-                if (objects.Game.keyboardManager.moveRight){
+                if (managers.Game.keyboardManager.moveRight){
                     this.x += 5;
                 }
-                if (objects.Game.keyboardManager.moveUp){
+                if (managers.Game.keyboardManager.moveUp){
                     this.y -= 5;
                 }
-                if (objects.Game.keyboardManager.moveDown){
+                if (managers.Game.keyboardManager.moveDown){
                     this.y += 5;
                 }
             }

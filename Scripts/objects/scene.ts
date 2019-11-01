@@ -3,10 +3,8 @@ module objects {
         // Variables
         public assetManager: createjs.LoadQueue;
         // Constructor
-        constructor(assetManager:createjs.LoadQueue) {
+        constructor() {
             super();
-
-            this.assetManager = assetManager;
         }
         // Methods
         public Start():void {}

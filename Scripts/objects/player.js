@@ -16,8 +16,8 @@ var objects;
     var Player = /** @class */ (function (_super) {
         __extends(Player, _super);
         //C
-        function Player(assetManager) {
-            var _this = _super.call(this, assetManager, "player") || this;
+        function Player() {
+            var _this = _super.call(this, "player") || this;
             _this.Start();
             return _this;
         }
@@ -36,17 +36,17 @@ var objects;
         Player.prototype.Move = function () {
             //this.x = objects.Game.stage.mouseX;
             //this.y = objects.Game.stage.mouseY;
-            if (objects.Game.keyboardManager.enabled) {
-                if (objects.Game.keyboardManager.moveLeft) {
+            if (managers.Game.keyboardManager.enabled) {
+                if (managers.Game.keyboardManager.moveLeft) {
                     this.x -= 5;
                 }
-                if (objects.Game.keyboardManager.moveRight) {
+                if (managers.Game.keyboardManager.moveRight) {
                     this.x += 5;
                 }
-                if (objects.Game.keyboardManager.moveUp) {
+                if (managers.Game.keyboardManager.moveUp) {
                     this.y -= 5;
                 }
-                if (objects.Game.keyboardManager.moveDown) {
+                if (managers.Game.keyboardManager.moveDown) {
                     this.y += 5;
                 }
             }

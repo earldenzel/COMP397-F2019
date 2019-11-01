@@ -7,19 +7,19 @@ module scenes {
         private startMusic: createjs.AbstractSoundInstance;
 
         // Constructor
-        constructor(assetManager:createjs.LoadQueue) {
-            super(assetManager);
+        constructor() {
+            super();
             this.Start();
         }
 
         public Start():void {
             // Initialize our objects for this scene
-            this.background = new objects.Background(this.assetManager);
+            this.background = new objects.Background();
 
             this.welcomeLabel = new objects.Label(
                 "Welcome to School!", "60px", "Consolas", "#FFFFFF", 320, 240, true);
 
-            this.startButton = new objects.Button(this.assetManager, "nextButton", 320, 300);            
+            this.startButton = new objects.Button("nextButton", 320, 300);            
             this.startMusic = createjs.Sound.play("start_music");
             this.startMusic.loop = -1; //loop forever
             this.startMusic.volume = 0.3;
@@ -30,7 +30,7 @@ module scenes {
 
         private startButtonClick():void {
             // Change our game state from START to GAME
-            objects.Game.currentScene = config.Scene.GAME;
+            managers.Game.currentScene = config.Scene.GAME;
         }
 
         public Main():void {

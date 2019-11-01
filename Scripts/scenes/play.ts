@@ -8,23 +8,25 @@ module scenes {
 
         private backgroundMusic: createjs.AbstractSoundInstance;
         private scoreboard: managers.Scoreboard;
+        private explosion: objects.Explosion;
+        private isExploding: boolean = false;
 
         // Constructor
-        constructor(assetManager:createjs.LoadQueue) {
-            super(assetManager);
+        constructor() {
+            super();
 
             this.Start();
         }
 
         // Methods
         public Start(): void {
-            this.player = new objects.Player(this.assetManager);
-            this.background = new objects.Background(this.assetManager);
+            this.player = new objects.Player();
+            this.background = new objects.Background();
             //this.enemy = new objects.Enemy(this.assetManager);
             this.enemies = new Array<objects.Enemy>();
             this.enemyNumber = 5;
             for (let index = 0; index < this.enemyNumber; index++) {
-                this.enemies[index] = new objects.Enemy(this.assetManager);                
+                this.enemies[index] = new objects.Enemy();                
             }
 
             this.scoreboard = new managers.Scoreboard;
@@ -45,10 +47,16 @@ module scenes {
                 e.Update();
                 this.player.isDead = managers.Collision.Check(this.player, e);
 
-                if (this.player.isDead) {
+                if (this.player.isDead && !this.isExploding) {
                     //Disable music
                     this.backgroundMusic.stop();
-                    objects.Game.currentScene = config.Scene.OVER;
+                    //managers.Game.currentScene = config.Scene.OVER;
+                    this.explosion = new objects.Explosion(this.player.x, this.player.y);
+                    this.explosion.on("animationend", this.handleExplosion);
+                    this.addChild(this.explosion);
+                    this.isExploding = true;
+                    this.removeChild(this.player);
+
                 }
             });
         }
@@ -60,6 +68,12 @@ module scenes {
                 this.addChild(e);
             });
             this.addChild(this.scoreboard);
+        }
+
+        private handleExplosion(){
+            this.stage.removeChild(this.explosion);
+            this.isExploding = false;
+            managers.Game.currentScene = config.Scene.OVER;
         }
     }
 }

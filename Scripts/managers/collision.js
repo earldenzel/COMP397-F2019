@@ -10,11 +10,11 @@ var managers;
             if (math.Vector2.Distance(P1, P2) < (object1.halfHeight + object2.halfHeight)) {
                 if (!object2.isColliding) {
                     //React to our collision
-                    switch (object2.name) {
-                        case "enemy":
-                            createjs.Sound.play("explosion");
-                            break;
-                    }
+                    //switch (object2.name){
+                    //    case "enemy":
+                    //        createjs.Sound.play("explosion");
+                    //    break;
+                    //}
                     object2.isColliding = true;
                     return true;
                 }

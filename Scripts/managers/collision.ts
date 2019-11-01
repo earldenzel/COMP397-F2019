@@ -9,11 +9,11 @@ module managers{
                 if (!object2.isColliding){
                     //React to our collision
 
-                    switch (object2.name){
-                        case "enemy":
-                            createjs.Sound.play("explosion");
-                        break;
-                    }
+                    //switch (object2.name){
+                    //    case "enemy":
+                    //        createjs.Sound.play("explosion");
+                    //    break;
+                    //}
                     object2.isColliding = true;
                     return true;
                 }

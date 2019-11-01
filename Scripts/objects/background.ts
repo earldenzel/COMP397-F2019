@@ -3,8 +3,8 @@ module objects{
         //Vars
         private speedY: number;
 
-        constructor (assetManager: createjs.LoadQueue){
-            super(assetManager.getResult("background"));
+        constructor (){
+            super(managers.Game.assetManager.getResult("background"));
             this.Start();
 
         }

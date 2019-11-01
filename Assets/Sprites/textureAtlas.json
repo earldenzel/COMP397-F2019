@@ -1,0 +1,40 @@
+{
+
+"images": [
+    "textureAtlas.png"
+],
+
+"framerate": 20,
+"frames": [
+    [1, 1, 82, 84, 0, -6, -5],
+    [85, 1, 85, 81, 0, -3, -4],
+    [172, 1, 80, 78, 0, -6, -8],
+    [172, 81, 82, 69, 0, -3, -2],
+    [85, 84, 84, 79, 0, -3, -4],
+    [171, 152, 83, 75, 0, -3, -4],
+    [1, 87, 81, 66, 0, -3, -1],
+    [1, 155, 81, 64, 0, -3, 0],
+    [84, 165, 65, 67, 0, -15, -17],
+    [1, 221, 65, 66, 0, -14, -17],
+    [151, 165, 17, 17, 0, -39, -43],
+    [151, 229, 52, 52, 0, -21, -26],
+    [205, 229, 41, 60, 0, 0, 0],
+    [68, 234, 39, 31, 0, 0, 0],
+    [109, 234, 39, 31, 0, 0, 0],
+    [68, 267, 30, 24, 0, 0, 0]
+],
+
+"animations": {
+    "Explosion": { "frames": [10, 11, 8, 9, 2, 0, 1, 4, 5, 3, 6, 7] },
+    "spaceship": { "frames": [12] },
+    "BackButton": { "frames": [13] },
+    "NextButton": { "frames": [14] },
+    "asteroid": { "frames": [15] }
+},
+
+"texturepacker": [
+        "SmartUpdateHash: $TexturePacker:SmartUpdate:2c170e5ed7d68605c7da1333b1523f97:c42aac959f232e15c6a6c4ed9e4c77ac:2b5604bc88faefd55ddac16e9bce1532$",
+        "Created with TexturePacker (https://www.codeandweb.com/texturepacker) for EaselJS"
+]
+
+}
