@@ -17,7 +17,7 @@ var objects;
         __extends(Explosion, _super);
         //C
         function Explosion(x, y) {
-            var _this = _super.call(this, "explosion") || this;
+            var _this = _super.call(this, "Explosion") || this;
             _this.explosionSFX = createjs.Sound.play("explosion");
             _this.explosionSFX.volume = 0.5;
             _this.x = x;

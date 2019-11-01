@@ -5,7 +5,7 @@ module objects{
 
         //C
         constructor (x:number, y:number){
-            super("explosion");
+            super("Explosion");
 
             this.explosionSFX = createjs.Sound.play("explosion");
             this.explosionSFX.volume = 0.5;
