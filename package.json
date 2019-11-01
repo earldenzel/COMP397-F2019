@@ -26,7 +26,7 @@
   "dependencies": {
     "createjs": "^1.0.1",
     "easeljs": "^1.0.2",
-    "mongoose": "^5.7.1",
+    "mongoose": "^5.7.5",
     "preloadjs": "^1.0.1",
     "soundjs": "^1.0.1"
   }
