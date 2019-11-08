@@ -16,24 +16,28 @@
     [1, 155, 81, 64, 0, -3, 0],
     [84, 165, 65, 67, 0, -15, -17],
     [1, 221, 65, 66, 0, -14, -17],
-    [151, 165, 17, 17, 0, -39, -43],
+    [151, 165, 16, 21, 0, 0, 0],
+    [151, 188, 17, 17, 0, -39, -43],
     [151, 229, 52, 52, 0, -21, -26],
     [205, 229, 41, 60, 0, 0, 0],
     [68, 234, 39, 31, 0, 0, 0],
     [109, 234, 39, 31, 0, 0, 0],
-    [68, 267, 30, 24, 0, 0, 0]
+    [68, 267, 30, 24, 0, 0, 0],
+    [100, 267, 20, 24, 0, 0, 0]
 ],
 
 "animations": {
-    "Explosion": { "frames": [10, 11, 8, 9, 2, 0, 1, 4, 5, 3, 6, 7] },
-    "spaceship": { "frames": [12] },
-    "BackButton": { "frames": [13] },
-    "NextButton": { "frames": [14] },
-    "asteroid": { "frames": [15] }
+    "Explosion": { "frames": [11, 12, 8, 9, 2, 0, 1, 4, 5, 3, 6, 7] },
+    "laser1": { "frames": [10] },
+    "spaceship": { "frames": [13] },
+    "BackButton": { "frames": [14] },
+    "NextButton": { "frames": [15] },
+    "asteroid": { "frames": [16] },
+    "laser2": { "frames": [17] }
 },
 
 "texturepacker": [
-        "SmartUpdateHash: $TexturePacker:SmartUpdate:2c170e5ed7d68605c7da1333b1523f97:c42aac959f232e15c6a6c4ed9e4c77ac:2b5604bc88faefd55ddac16e9bce1532$",
+        "SmartUpdateHash: $TexturePacker:SmartUpdate:179a1162ec09a67db672fd56c97947d2:e2d9bdb7dca8cf717ecfab9439ac21a1:2b5604bc88faefd55ddac16e9bce1532$",
         "Created with TexturePacker (https://www.codeandweb.com/texturepacker) for EaselJS"
 ]
 

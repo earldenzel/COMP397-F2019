@@ -30,6 +30,7 @@ var objects;
         Player.prototype.Update = function () {
             this.Move();
             this.CheckBound();
+            this.LaserFire();
         };
         Player.prototype.Reset = function () {
         };
@@ -59,6 +60,24 @@ var objects;
             //LEFT
             if (this.x <= this.halfWidth) {
                 this.x = this.halfWidth;
+            }
+        };
+        Player.prototype.LaserFire = function () {
+            if (!this.isDead) {
+                var ticker = createjs.Ticker.getTicks();
+                // Player is trying to shoot the laser
+                if ((managers.Game.keyboardManager.shoot) && (ticker % 10 == 0)) {
+                    this.laserSpawn = new math.Vector2(this.x, this.y - this.halfHeight);
+                    var currentLaser = managers.Game.laserManager.currentLaser;
+                    var laser = managers.Game.laserManager.Lasers[currentLaser];
+                    laser.x = this.laserSpawn.x;
+                    laser.y = this.laserSpawn.y;
+                    managers.Game.laserManager.currentLaser++;
+                    if (managers.Game.laserManager.currentLaser > 49) {
+                        managers.Game.laserManager.currentLaser = 0;
+                    }
+                    // Play a laser sound
+                }
             }
         };
         return Player;

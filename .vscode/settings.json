@@ -1,4 +1,9 @@
 {
     "vscode.tsc.compiler.alertTSConfigChanges": "never",
-    "liveServer.settings.port": 5501
+    "liveServer.settings.port": 5501,
+    "files.exclude": {
+        "**/*.js": true,
+        "**/*.map": true,
+        "node_modules/**": true
+    },
 }

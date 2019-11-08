@@ -2,6 +2,7 @@ module objects{
     export class Player extends objects.GameObject{
         //V
         public isDead: boolean;
+        private laserSpawn: math.Vector2;
 
         //C
         constructor(){
@@ -20,6 +21,7 @@ module objects{
         public Update(): void{
             this.Move();
             this.CheckBound();
+            this.LaserFire();
         }
         public Reset(): void{
 
@@ -54,6 +56,27 @@ module objects{
                 this.x = this.halfWidth
             }
 
+        }
+        
+        public LaserFire():void {
+            if(!this.isDead) {
+                let ticker:number = createjs.Ticker.getTicks();
+
+                // Player is trying to shoot the laser
+                if((managers.Game.keyboardManager.shoot) && (ticker % 10 == 0)) {
+                    this.laserSpawn = new math.Vector2(this.x, this.y - this.halfHeight);
+                    let currentLaser = managers.Game.laserManager.currentLaser;
+                    let laser = managers.Game.laserManager.Lasers[currentLaser];
+                    laser.x = this.laserSpawn.x;
+                    laser.y = this.laserSpawn.y;
+                    managers.Game.laserManager.currentLaser++;
+                    if(managers.Game.laserManager.currentLaser > 49) {
+                        managers.Game.laserManager.currentLaser = 0;
+                    }
+
+                    // Play a laser sound
+                }
+            }
         }
     }
 }

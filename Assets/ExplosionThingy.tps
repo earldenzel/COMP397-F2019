@@ -253,6 +253,36 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">../../Desktop/laser1.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>4,5,8,11</rect>
+                <key>scale9Paddings</key>
+                <rect>4,5,8,11</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../../Desktop/laser2.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>5,6,10,12</rect>
+                <key>scale9Paddings</key>
+                <rect>5,6,10,12</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
         </map>
         <key>fileList</key>
         <array>
@@ -272,6 +302,8 @@
             <filename>Explosion/Explosion-9.png</filename>
             <filename>Explosion/Explosion-10.png</filename>
             <filename>Explosion/Explosion-11.png</filename>
+            <filename>../../Desktop/laser1.png</filename>
+            <filename>../../Desktop/laser2.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

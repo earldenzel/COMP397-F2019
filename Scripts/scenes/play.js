@@ -32,6 +32,8 @@ var scenes;
             for (var index = 0; index < this.enemyNumber; index++) {
                 this.enemies[index] = new objects.Enemy();
             }
+            this.laserManager = new managers.Laser();
+            managers.Game.laserManager = this.laserManager;
             this.scoreboard = new managers.Scoreboard;
             this.scoreboard.x = 10;
             this.scoreboard.y = 10;
@@ -45,19 +47,18 @@ var scenes;
             var _this = this;
             this.background.Update();
             this.player.Update();
+            this.laserManager.Update();
             this.enemies.forEach(function (e) {
-                e.Update();
-                _this.player.isDead = managers.Collision.Check(_this.player, e);
-                if (_this.player.isDead && !_this.isExploding) {
-                    //Disable music
-                    _this.backgroundMusic.stop();
-                    //managers.Game.currentScene = config.Scene.OVER;
-                    _this.explosion = new objects.Explosion(_this.player.x, _this.player.y);
-                    _this.explosion.on("animationend", _this.handleExplosion);
-                    _this.addChild(_this.explosion);
-                    _this.isExploding = true;
-                    _this.removeChild(_this.player);
+                if (!e.isDead) {
+                    e.Update();
+                    managers.Collision.CheckAABB(_this.player, e);
                 }
+            });
+            // SUPER INEFFICIENT. WE WILL FIX THIS LATER AS WELL
+            this.laserManager.Lasers.forEach(function (laser) {
+                _this.enemies.forEach(function (enemy) {
+                    managers.Collision.CheckAABB(laser, enemy);
+                });
             });
         };
         PlayScene.prototype.Main = function () {
@@ -66,6 +67,9 @@ var scenes;
             this.addChild(this.player);
             this.enemies.forEach(function (e) {
                 _this.addChild(e);
+            });
+            this.laserManager.Lasers.forEach(function (laser) {
+                _this.addChild(laser);
             });
             this.addChild(this.scoreboard);
         };

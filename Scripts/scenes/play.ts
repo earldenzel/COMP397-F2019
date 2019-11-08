@@ -11,6 +11,8 @@ module scenes {
         private explosion: objects.Explosion;
         private isExploding: boolean = false;
 
+        private laserManager: managers.Laser;
+
         // Constructor
         constructor() {
             super();
@@ -28,6 +30,8 @@ module scenes {
             for (let index = 0; index < this.enemyNumber; index++) {
                 this.enemies[index] = new objects.Enemy();                
             }
+            this.laserManager = new managers.Laser();
+            managers.Game.laserManager = this.laserManager;
 
             this.scoreboard = new managers.Scoreboard;
             this.scoreboard.x = 10;
@@ -43,21 +47,21 @@ module scenes {
         public Update(): void {
             this.background.Update();
             this.player.Update();
-            this.enemies.forEach(e =>{
-                e.Update();
-                this.player.isDead = managers.Collision.Check(this.player, e);
+            
+            this.laserManager.Update();
+            this.enemies.forEach(e => {
+                if(!e.isDead) {
+                    e.Update();
 
-                if (this.player.isDead && !this.isExploding) {
-                    //Disable music
-                    this.backgroundMusic.stop();
-                    //managers.Game.currentScene = config.Scene.OVER;
-                    this.explosion = new objects.Explosion(this.player.x, this.player.y);
-                    this.explosion.on("animationend", this.handleExplosion);
-                    this.addChild(this.explosion);
-                    this.isExploding = true;
-                    this.removeChild(this.player);
-
+                    managers.Collision.CheckAABB(this.player, e);
                 }
+            });
+
+            // SUPER INEFFICIENT. WE WILL FIX THIS LATER AS WELL
+            this.laserManager.Lasers.forEach(laser => {
+                this.enemies.forEach(enemy => {
+                    managers.Collision.CheckAABB(laser, enemy);
+                });
             });
         }
 
@@ -67,6 +71,11 @@ module scenes {
             this.enemies.forEach(e =>{
                 this.addChild(e);
             });
+
+            this.laserManager.Lasers.forEach(laser =>{
+                this.addChild(laser);
+            });
+
             this.addChild(this.scoreboard);
         }
 
